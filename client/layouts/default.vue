@@ -9,8 +9,12 @@
         <div>
           <ul class="flex space-x-12">
             <li><NuxtLink to="/">Home</NuxtLink></li>
+            <li><NuxtLink to="/login">Login</NuxtLink></li>
+            <li><NuxtLink to="/register">Register</NuxtLink></li>
+            <li><NuxtLink to="/my-info">My Info</NuxtLink></li>
             <li><NuxtLink to="/about">About</NuxtLink></li>
             <li><NuxtLink to="/contact">Contact</NuxtLink></li>
+            <li><a href="#">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -28,3 +32,4 @@ const title = useState('title', () => 'Nuxt 3 Blog');
   font-weight: bold;
 }
 </style>
+
