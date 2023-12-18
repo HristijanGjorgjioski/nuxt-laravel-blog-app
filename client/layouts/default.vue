@@ -17,7 +17,9 @@
               <li v-if="isLoggedIn">
                 <NuxtLink to="/create">Create</NuxtLink>
               </li>
-              <NuxtLink to="/my-info">My Info</NuxtLink>
+              <li v-if="isLoggedIn">
+                <NuxtLink to="/my-info">My Info</NuxtLink>
+              </li>
               <li v-if="isLoggedIn"><NuxtLink to="/about">About</NuxtLink></li>
               <li><NuxtLink to="/contact">Contact</NuxtLink></li>
               <li>
