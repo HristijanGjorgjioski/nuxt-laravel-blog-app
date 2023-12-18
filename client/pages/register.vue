@@ -57,6 +57,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['guest'],
+});
+
 const title = useState('title');
 const name = ref('');
 const email = ref('');
@@ -81,7 +85,11 @@ async function register() {
         password_confirmation: passwordConfirm.value,
       },
     });
-    // router.push('/my-info')
+    const user = await $apiFetch('/api/user');
+
+    const { setUser } = useAuth();
+    setUser(user.name);
+
     window.location.pathname = '/';
   } catch (err) {
     console.log(err.data);

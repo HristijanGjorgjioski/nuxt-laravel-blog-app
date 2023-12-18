@@ -22,6 +22,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['auth'],
+});
+
 import { onMounted } from 'vue';
 const title = ref('');
 const user = ref(null);
