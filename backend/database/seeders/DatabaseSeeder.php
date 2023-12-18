@@ -18,7 +18,12 @@ class DatabaseSeeder extends Seeder
 
         User::find(1)->update([
             'name' => 'Hristijan',
-            'email' => 'kiko@test.com'
+            'email' => 'kiko@test.com',
+            'password' => '1234qwer'
+        ]);
+
+        Post::find(3)->update([
+            'user_id' => '1'
         ]);
     }
 }

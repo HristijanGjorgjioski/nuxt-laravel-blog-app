@@ -56,3 +56,38 @@
   </div>
 </template>
 
+<script setup>
+const title = useState('title');
+const name = ref('');
+const email = ref('');
+const password = ref('');
+const passwordConfirm = ref('');
+const isLoading = ref(false);
+const errors = ref([]);
+const { $apiFetch } = useNuxtApp();
+function csrf() {
+  return $apiFetch('/sanctum/csrf-cookie');
+}
+async function register() {
+  await csrf();
+  isLoading.value = true;
+  try {
+    await $apiFetch('/register', {
+      method: 'POST',
+      body: {
+        name: email.value,
+        email: email.value,
+        password: password.value,
+        password_confirmation: passwordConfirm.value,
+      },
+    });
+    // router.push('/my-info')
+    window.location.pathname = '/';
+  } catch (err) {
+    console.log(err.data);
+    errors.value = Object.values(err.data.errors).flat();
+  }
+  isLoading.value = false;
+}
+</script>
+

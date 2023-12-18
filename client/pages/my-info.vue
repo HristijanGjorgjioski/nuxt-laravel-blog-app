@@ -20,3 +20,18 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { onMounted } from 'vue';
+const title = ref('');
+const user = ref(null);
+const posts = ref(null);
+
+const { $apiFetch } = useNuxtApp();
+
+onMounted(async () => {
+  user.value = await $apiFetch('/api/user');
+  posts.value = await $apiFetch('/api/user/posts');
+});
+</script>
+

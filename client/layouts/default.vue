@@ -14,7 +14,7 @@
             <li><NuxtLink to="/my-info">My Info</NuxtLink></li>
             <li><NuxtLink to="/about">About</NuxtLink></li>
             <li><NuxtLink to="/contact">Contact</NuxtLink></li>
-            <li><a href="#">Logout</a></li>
+            <li><a @click.prevent="logout" href="#">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -25,6 +25,19 @@
 
 <script setup>
 const title = useState('title', () => 'Nuxt 3 Blog');
+const { $apiFetch } = useNuxtApp();
+
+async function logout() {
+  try {
+    await $apiFetch('/logout', {
+      method: 'POST',
+    });
+  } catch (err) {
+    console.log(err.data);
+  } finally {
+    window.location.pathname = '/';
+  }
+}
 </script>
 
 <style>
